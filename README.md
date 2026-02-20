@@ -1,9 +1,13 @@
 ﻿# Football Performance Analytics
 ### Hybrid Ensemble Model -- Dixon-Coles + LightGBM
 
-> **Audience:** Academy analysts, performance staff, coaching leads
-> **Focus:** Probability calibration, longitudinal performance tracking, development diagnostics
-> **Data:** Premier League 2023-2026 (350-match curated sample, model tracking live through GW25)
+> **Audience:** Academy analysts, performance staff, coaching leads  
+> **Focus:** Probability calibration, longitudinal performance tracking, development diagnostics  
+> **Data:** Premier League 2023-2026 (350-match curated sample, model tracking live through GW26)
+
+This project demonstrates applied sports data science with direct relevance to academy performance analysis. The core proposition: **process quality (xG, DC parameters, expected outcomes) predicts future performance before results do** -- exactly the signal an academy analyst needs to identify development trajectories in young players and squads before the points table reflects them. Every technique here -- drift detection, probability calibration, match-state classification -- has a direct academy equivalent.
+
+Built and maintained by a self-taught analyst. Forensic auditing over automation: this model has had a **61-match data gap identified and backfilled**, a **`prob_H`/`prob_A` column-swap bug detected via known-strength fixtures**, and a live GW-by-GW post-match autopsy running through the current season.
 
 ---
 
@@ -44,7 +48,11 @@ Covers: calibration curve, Brier score vs historical baseline, decile reliabilit
 
 ### 3. `gw26_gamestate_and_variance_autopsy.ipynb`
 Forensic multi-market post-match analysis of Gameweek 26 using real GW26 prediction data.
-Covers: Goal-Line Accuracy (80% on both 2.5 and 3.5 thresholds, 10 completed fixtures), Territorial Dominance (corner prediction), Match Volatility Heatmap, and 1X2 Macro Variance Autopsy -- isolating an anomalous upset week from model calibration quality (+0.5pp discrimination gap).
+Covers four analytical lenses:
+- **Goal-Line Accuracy**: 80% on both 2.5 and 3.5 thresholds (10 completed fixtures) -- volumetric signal held on a week where the 1X2 market collapsed
+- **Territorial Dominance**: Corner Territorial Pressure Index per team, validated against actuals with four-quadrant game-state classification
+- **Match Volatility Heatmap**: Four-corner matrix (High/Low xG × High/Low corners) classifying each fixture by pre-match structural volatility
+- **Macro Variance Autopsy**: 2×2 Model vs Home-Win Baseline breakdown isolating the **Alpha Zone** (WHU v MUN: model called the draw the naive baseline missed) from **Structural Chaos** (7/10 games unpredictable by any rule-based system). Discrimination gap +0.5pp confirms calibration integrity -- the anomalous week was macro variance, not model failure.
 
 **Notebooks 1 and 2 are fully self-contained** -- clone the repo and run from top to bottom with no additional setup. Notebook 3 (`gw26_gamestate_and_variance_autopsy.ipynb`) reads proprietary match-feature data not included in the public repo; all cells have pre-rendered outputs so the analysis is fully viewable without re-running.
 
@@ -131,11 +139,11 @@ football-performance-analytics/
 
 *Dual-axis rolling 5-game comparison: actual points per game (blue, left axis) vs Goal Expectancy per game (orange, right axis). Shaded windows highlight periods where structural quality (xG) exceeded results -- the analytical case for maintaining confidence in a squad despite a short-term points slump.*
 
-### Identifying the Structurally Undervalued Forward
+### xG Efficiency Profile: Identifying Structural Under- and Over-performance
 
 ![xG Inefficiency Scatter](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/xg_inefficiency_scatter.png)
 
-*Each point represents a player's individual xG contribution (% of team total) plotted against their team's mean xG output. Players in the bottom-left quadrant (low team output, high personal contribution) are generating high-quality chances from low-service contexts -- the structural profile of an undervalued forward masked by collective underperformance. Highlighted points (Everton blue) represent the primary scouting target archetype.*
+*Each point is a team's mean xG per game (x) vs mean points per game (y), coloured by how far above or below the xG-to-points regression line they sit. Teams in the **bottom-right quadrant** (High xG, Low PPG) are generating quality chances but failing to convert them to results -- the structural "underperforming" profile. Teams in the **top-left quadrant** (Low xG, High PPG) are over-converting -- riding form or finishing luck that is statistically unlikely to persist. The four-corner labels frame each zone for direct scouting and squad-planning language: "Structural Candidate" (bottom-right) vs "Fortunate / Regression Risk" (top-left). Applied to academy players: replace team xG with player progressive passes/shot-creating actions and the same quadrant logic identifies who is producing process indicators before results reward them.*
 
 ---
 
