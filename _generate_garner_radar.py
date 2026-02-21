@@ -1,7 +1,7 @@
 """
 _generate_garner_radar.py
 Generates a professional player profile radar for James Garner (Everton)
-ranking him percentile vs PL midfielders with >=900 min, GW1-26 2024/25.
+ranking him percentile vs PL midfielders with >=900 min, GW1-26 2025/26.
 Output: assets/garner_performance_radar.png
 """
 import os, warnings
@@ -166,7 +166,7 @@ ax_ctx.text(0.0, 1.00, 'James Garner', fontsize=22, fontweight='bold',
             color=EVT_BLUE, va='top', transform=ax_ctx.transAxes)
 ax_ctx.text(0.0, 0.90, 'Everton  ·  Central Midfielder', fontsize=12,
             color=DARK_GREY, va='top', transform=ax_ctx.transAxes)
-ax_ctx.text(0.0, 0.83, 'PL 2024/25  ·  GW1–26  ·  Percentile vs PL Midfielders (≥900 min)',
+ax_ctx.text(0.0, 0.83, 'PL 2025/26  ·  GW1–26  ·  Percentile vs PL Midfielders (≥900 min)',
             fontsize=9, color='#666666', va='top', transform=ax_ctx.transAxes)
 
 # Horizontal rule
@@ -222,12 +222,12 @@ y -= 0.09
 
 # Methodology note
 note = (f'Pool: {len(pool)} PL midfielders with >=900 min.\n'
-        'Metrics computed per 90. Source: FPL 2024/25 GW data.')
+        'Metrics computed per 90. Source: FPL 2025/26 GW data.')
 ax_ctx.text(0.0, y, note, fontsize=7.5, color='#888888',
             va='top', transform=ax_ctx.transAxes, style='italic')
 
 # Main title strip at top of figure
-fig.text(0.5, 0.975, 'Player Profile -- Percentile vs PL Midfielders  |  PL 2024/25',
+fig.text(0.5, 0.975, 'Player Profile -- Percentile vs PL Midfielders  |  PL 2025/26',
          ha='center', fontsize=11, color='#555555', style='italic')
 
 out = 'assets/garner_performance_radar.png'

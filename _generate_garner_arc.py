@@ -3,7 +3,7 @@ _generate_garner_arc.py
 Two charts:
   1. garner_cm_comparison.png  -- Radar: Garner vs Tielemans vs Wharton
   2. garner_rolling_arc.png    -- Rolling 5-GW form arc for 3 key metrics
-Real FPL 2024/25 GW1-26 data. No synthetic data.
+Real FPL 2025/26 GW1-26 data. No synthetic data.
 """
 import os, glob, warnings
 import numpy as np
@@ -134,11 +134,11 @@ ax_r.spines['polar'].set_visible(False)
 ax_ctx = fig1.add_axes([0.57, 0.06, 0.40, 0.86])
 ax_ctx.axis('off')
 
-ax_ctx.text(0.0, 1.00, 'CM Comparison — PL 2024/25',
+ax_ctx.text(0.0, 1.00, 'CM Comparison — PL 2025/26',
             fontsize=16, fontweight='bold', color=DARK, va='top',
             transform=ax_ctx.transAxes)
 ax_ctx.text(0.0, 0.91, 'Percentile vs PL outfield starters ≥900 min, GW1–26\n'
-                        'Real FPL 2024/25 GW data · All metrics per 90',
+                        'Real FPL 2025/26 GW data · All metrics per 90',
             fontsize=8.5, color='#666666', va='top', transform=ax_ctx.transAxes)
 
 ax_ctx.add_patch(mpatches.FancyBboxPatch(

@@ -207,7 +207,7 @@ Key findings:
 
 ![James Garner player profile radar showing percentile rankings vs PL midfielders](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_performance_radar.png?v=20250401)
 
-*Percentile radar vs 121 PL midfielders with ≥900 Premier League minutes in 2024/25 (GW1–26). All metrics per 90. Source: FPL 2024/25 GW data.*
+*Percentile radar vs 121 PL midfielders with ≥900 Premier League minutes in 2025/26 (GW1–26). All metrics per 90. Source: FPL 2025/26 GW data.*
 
 Garner's profile is one of the most analytically interesting in the division. Across 2,333 minutes this season:
 
@@ -226,7 +226,7 @@ What makes this profile compelling for recruitment analysis: Garner sits in the 
 
 ![Comparative radar Garner vs Wharton vs Tielemans all PL CM percentiles](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_cm_comparison.png?v=20250302)
 
-*All metrics per 90, percentile vs 249 PL outfield starters (≥900 min, GW1–26). Real FPL 2024/25 data.*
+*All metrics per 90, percentile vs PL outfield starters (≥900 min, GW1–26). Real FPL 2025/26 data.*
 
 | Metric | Garner | Wharton | Tielemans |
 | --- | --- | --- | --- |
