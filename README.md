@@ -159,7 +159,7 @@ football-performance-analytics/
 
 ---
 
-## Case Study: Everton 2024/25 -- Process vs Results
+## Case Study: Everton 2025/26 -- Process vs Results
 
 ### GW26 Finishing Variance Context (Everton)
 
