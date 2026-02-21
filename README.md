@@ -54,10 +54,10 @@ Covers: calibration curve, Brier score vs historical baseline, decile reliabilit
 Forensic multi-market post-match analysis of Gameweek 26 using real GW26 prediction data.
 Covers four analytical lenses:
 
-- **Goal-Line Accuracy**: 73% on both 2.5 and 3.5 thresholds (8/11 completed fixtures) -- volumetric signal held directionally on a week where the 1X2 market collapsed
+- **Goal-Line Accuracy**: 80% on both 2.5 and 3.5 thresholds (8/10 completed fixtures) -- volumetric signal held directionally on a week where the 1X2 market collapsed
 - **Territorial Dominance**: Corner Territorial Pressure Index per team, validated against actuals with four-quadrant game-state classification
 - **Match Volatility Heatmap**: Four-corner matrix (High/Low xG × High/Low corners) classifying each fixture by pre-match structural volatility
-- **Macro Variance Autopsy**: 2×2 Model vs Home-Win Baseline breakdown isolating the **Alpha Zone** (WHU v MUN: model called the draw the naive baseline missed) from **Structural Chaos** (8/11 games unpredictable by any rule-based system), with **EVE v BOU explicitly classified as Finishing Variance**. Discrimination gap -1.6pp remains near-zero calibration separation.
+- **Macro Variance Autopsy**: 2×2 Model vs Home-Win Baseline breakdown isolating the **Alpha Zone** (WHU v MUN: model called the draw the naive baseline missed) from **Structural Chaos** (8/11 games unpredictable by any rule-based system), with **EVE v BOU explicitly classified as Finishing Variance**. Discrimination gap +0.5pp remains near-zero calibration separation.
 - **Black Swan Example (WOL v ARS 2-2)**: Textbook extreme variance event where Wolves (attack strength -0.87, very weak) scored 2 goals against Arsenal's elite defense (defensive strength -0.65). Model predicted 59.2% Arsenal win with 2.38 xG total; actual result was 4 goals and a draw (+1.62 goal variance). This validates that the model correctly identified the structural quality gap -- the parameters were right; the outcome was a statistical outlier.
 
 **Notebooks 1 and 2 are fully self-contained** -- clone the repo and run from top to bottom with no additional setup. Notebook 3 (`gw26_gamestate_and_variance_autopsy.ipynb`) reads proprietary match-feature data not included in the public repo; all cells have pre-rendered outputs so the analysis is fully viewable without re-running.
@@ -163,19 +163,19 @@ football-performance-analytics/
 
 In GW27-30 of the 2024/25 season, the model identified a structural disconnect between Everton's underlying metrics and their points return:
 
-| Fixture | xG Diff (Everton minus opponent, actual) | DC Home Attack (pre-match, home team) | Result | Model Prediction |
+| Fixture | Actual xG Diff (post-match, Everton − opp.) | DC λ home (pre-match exp. goals) | Result | Model Prediction |
 | --- | --- | --- | --- | --- |
-| Everton vs Liverpool | +0.53 | 0.886 | Draw | Draw (correct) |
-| Crystal Palace vs Everton | -0.23 (Everton rel.) | -- | Everton won | Home win (wrong) |
-| Everton vs Man United | +0.17 | 1.333 | Draw | Home win (close) |
+| Everton vs Liverpool | +0.40 (EVE 1.0 vs LIV 0.6) | 0.654 (Everton home λ) | Draw | Away win (wrong) |
+| Crystal Palace vs Everton | −0.70 (EVE 0.9 vs PAL 1.6) | 1.096 (Palace home λ) | Everton won | Home win (wrong) |
+| Everton vs Man United | +1.20 (EVE 1.6 vs MUN 0.4) | 0.851 (Everton home λ) | Draw | Home win (narrow miss) |
 
-Notes: xG Diff is the observed in-game xG differential from the match data. DC Home Attack is the pre-match Dixon-Coles attack parameter for the home team (not a probability), so values around ~0.8 to ~1.3 are plausible depending on opponent strength.
+Notes: **xG Diff** is actual post-match in-game xG from Understat data (not model-predicted xG). Positive = Everton generated more expected chances. **DC λ** (lambda) is the Dixon-Coles pre-match expected goals for the home team -- a composite of both teams' attack/defence parameters and home advantage. Values below 1.0 indicate a below-average attacking expectation for the home side.
 
 Key findings:
 
-- Against Liverpool, Everton generated **+0.53 xG differential at home** -- outperforming one of the division's strongest sides in expected chances. The model captured this (42% draw probability) and was correct.
-- At Crystal Palace, Everton generated **1.00 away xG vs Crystal Palace's 0.77 home xG** -- a structural mismatch invisible in the match result alone. Everton won.
-- Across the window, Everton's Dixon-Coles attack parameters averaged 1.08 -- near league average, but with a consistent positive xG differential suggesting the model was slightly underrating their attacking output.
+- Against Liverpool, Everton generated **+0.40 xG differential at home** (1.0 vs 0.6) -- competitive against one of the division's strongest sides. The model favoured Liverpool as away winners (45.9%), but Everton's process quality explained the draw. A case where xG metrics gave an earlier signal than the result alone.
+- At Crystal Palace, **Crystal Palace generated 1.60 home xG vs Everton's 0.90** -- structural metrics favoured Palace, and the model predicted a Palace home win (42.2%). Everton converted and won. Classic over-conversion: process pointed one way, finishing variance decided the result.
+- Across the two Everton home fixtures in this window, Everton's DC expected goals (λ) averaged 0.75 -- below league average, reflecting a squad under structural pressure. Yet in the Man United match their actual xG reached 1.60, demonstrating the gap between season-level parameters and in-game execution.
 
 **The analytical value:** A team can show process improvement (consistent positive xG differentials, strong DC parameters) before results catch up. This is precisely the kind of signal academy analysts need -- identifying development in advance of points, not retroactively.
 
