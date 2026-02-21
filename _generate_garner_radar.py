@@ -1,7 +1,7 @@
 """
 _generate_garner_radar.py
 Generates a professional player profile radar for James Garner (Everton)
-ranking him percentile vs all PL outfield regular starters, GW1-22 2025/26.
+ranking him percentile vs all PL outfield regular starters, GW1-26 2024/25.
 Output: assets/garner_performance_radar.png
 """
 import os, warnings
@@ -153,7 +153,7 @@ ax_ctx.text(0.0, 1.00, 'James Garner', fontsize=22, fontweight='bold',
             color=EVT_BLUE, va='top', transform=ax_ctx.transAxes)
 ax_ctx.text(0.0, 0.90, 'Everton  ·  Central Midfielder', fontsize=12,
             color=DARK_GREY, va='top', transform=ax_ctx.transAxes)
-ax_ctx.text(0.0, 0.83, 'PL 2025/26  ·  GW1–22  ·  Percentile vs PL Outfield Starters',
+ax_ctx.text(0.0, 0.83, 'PL 2024/25  ·  GW1–26  ·  Percentile vs PL Outfield Starters',
             fontsize=9, color='#666666', va='top', transform=ax_ctx.transAxes)
 
 # Horizontal rule
