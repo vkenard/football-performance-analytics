@@ -93,7 +93,7 @@ Open either notebook and select **Kernel -> Restart & Run All**.
 
 ## File Structure
 
-```
+```text
 football-performance-analytics/
 +-- README.md
 +-- forward_validation_demo.ipynb
@@ -163,11 +163,13 @@ football-performance-analytics/
 
 In GW27-30 of the 2024/25 season, the model identified a structural disconnect between Everton's underlying metrics and their points return:
 
-| Fixture | xG Diff | DC Home Attack | Result | Model Prediction |
+| Fixture | xG Diff (Everton minus opponent, actual) | DC Home Attack (pre-match, home team) | Result | Model Prediction |
 | --- | --- | --- | --- | --- |
 | Everton vs Liverpool | +0.53 | 0.886 | Draw | Draw (correct) |
 | Crystal Palace vs Everton | -0.23 (Everton rel.) | -- | Everton won | Home win (wrong) |
 | Everton vs Man United | +0.17 | 1.333 | Draw | Home win (close) |
+
+Notes: xG Diff is the observed in-game xG differential from the match data. DC Home Attack is the pre-match Dixon-Coles attack parameter for the home team (not a probability), so values around ~0.8 to ~1.3 are plausible depending on opponent strength.
 
 Key findings:
 
@@ -183,7 +185,7 @@ Key findings:
 
 ![Academy Development Monitor](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_academy_development_monitor.png)
 
-*Real-player development monitor built from FPL 2025/26 gameweek player files (Myles Lewis-Skelly). The chart uses chances-created-per-90 and rolling Z-score versus GW cohort baseline to separate development signal from short-term noise.*
+*Real-player development monitor built from FPL 2025/26 gameweek player files (Mateus Mané). The chart uses chances-created-per-90 and rolling Z-score versus GW cohort baseline to separate development signal from short-term noise.*
 
 The methodology here is directly transferable to academy performance analysis:
 
