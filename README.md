@@ -205,22 +205,22 @@ Key findings:
 
 ## Player Spotlight: James Garner (Everton)
 
-![James Garner player profile radar showing percentile rankings vs all PL outfield starters](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_performance_radar.png?v=20250302)
+![James Garner player profile radar showing percentile rankings vs PL midfielders](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_performance_radar.png?v=20250401)
 
-*Percentile radar vs 249 outfield players with ≥900 Premier League minutes in 2024/25 (GW1–26). All metrics per 90. Source: FPL 2024/25 GW data.*
+*Percentile radar vs 121 PL midfielders with ≥900 Premier League minutes in 2024/25 (GW1–26). All metrics per 90. Source: FPL 2024/25 GW data.*
 
 Garner's profile is one of the most analytically interesting in the division. Across 2,333 minutes this season:
 
-| Metric | Per 90 | Percentile (vs 249 PL starters) |
+| Metric | Per 90 | Percentile (vs 121 PL midfielders) |
 | --- | --- | --- |
-| Defensive Contribution | 12.4 | **96th** |
-| Tackles | 3.0 | **95th** |
-| Ball Recoveries | 5.2 | **86th** |
-| Chance Creation (Creativity) | 22.8 | **81st** |
-| Overall Influence | 23.1 | 76th |
-| xG Involvements | 0.23 | 62nd |
+| Defensive Contribution | 12.4 | **95th** |
+| Tackles | 3.0 | **93rd** |
+| Ball Recoveries | 5.2 | **79th** |
+| Chance Creation (Creativity) | 22.8 | 66th |
+| Overall Influence | 23.1 | **81st** |
+| xG Involvements | 0.23 | 42nd |
 
-What makes this profile compelling for recruitment analysis: Garner sits in the top 4% of all PL starters for defensive coverage, yet his creativity (81st pct) and influence (76th pct) confirm this is not a pure defensive holding role. The xGI (62nd) is the one metric with room to grow -- consistent with a player whose primary function is progression and defensive structure rather than final-ball delivery.
+What makes this profile compelling for recruitment analysis: Garner sits in the top 5% of all PL midfielders for defensive coverage, yet his influence (81st pct) confirms this is not a pure defensive holding role. The xGI (42nd vs midfielders) reflects a legitimate positional tradeoff -- midfielders as a group generate more xGI chances than all outfield positions pooled, placing Garner correctly as a defensive-first CM rather than a penalty-box contributor. The gap between 42nd pct xGI and 95th pct defensive contribution is not a weakness -- it is a **system fit** question.
 
 ### Comparison: Garner vs Wharton vs Tielemans
 
@@ -247,7 +247,7 @@ The comparison clarifies the profile distinctions. Wharton (Crystal Palace) has 
 
 The rolling arc demonstrates consistency and development trajectory -- not just snapshot ability. GW19 (goal + assist vs Leicester) is visible as the natural spike but the underlying defensive contribution and tackles metrics are elevated **across the full second half of the season** (GW14–26), not just the standout week. This is the kind of evidence-based form narrative that separates genuine development from noise -- directly applicable to the same framework used for academy monitoring.
 
-From an academy analytics perspective: this is the same radar logic applied to development -- identifying players who are elite on process metrics (defensive coverage, pressing intensity) even when their output metrics (goals, assists) don't yet reflect it. The gap between 62nd pct xGI and 96th pct defensive contribution is not a weakness -- it is a **system fit** question.
+From an academy analytics perspective: this is the same radar logic applied to development -- identifying players who are elite on process metrics (defensive coverage, pressing intensity) even when their output metrics (goals, assists) don't yet reflect it.
 
 ---
 

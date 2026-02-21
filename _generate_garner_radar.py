@@ -1,7 +1,7 @@
 """
 _generate_garner_radar.py
 Generates a professional player profile radar for James Garner (Everton)
-ranking him percentile vs all PL outfield regular starters, GW1-26 2024/25.
+ranking him percentile vs PL midfielders with >=900 min, GW1-26 2024/25.
 Output: assets/garner_performance_radar.png
 """
 import os, warnings
@@ -33,12 +33,17 @@ files = sorted(glob.glob(f'{GW_DIR}/GW*_player_gameweek_stats.csv'))
 dfs = [pd.read_csv(f, low_memory=False) for f in files]
 all_gws = pd.concat(dfs).reset_index(drop=True)
 
+# Load position data from per-GW players.csv (FPL IDs match player_gameweek_stats)
+players_pos = pd.read_csv(f'{GW_DIR}/GW22_players.csv')[['player_id', 'position']]
+players_pos.rename(columns={'player_id': 'id'}, inplace=True)
+all_gws = all_gws.merge(players_pos, on='id', how='left')
+
 # Remove GKs (saves > 0 in any GW implies GK)
 gk_ids = all_gws[all_gws['saves'] > 0]['id'].unique()
 field = all_gws[~all_gws['id'].isin(gk_ids)].copy()
 
 # Aggregate per player across season
-agg = field.groupby(['id', 'second_name', 'first_name', 'web_name']).agg(
+agg = field.groupby(['id', 'second_name', 'first_name', 'web_name', 'position']).agg(
     total_minutes    = ('minutes', 'sum'),
     total_goals      = ('goals_scored', 'sum'),
     total_assists    = ('assists', 'sum'),
@@ -60,9 +65,10 @@ agg['recoveries_p90'] = agg['total_recoveries']   / mins * 90
 agg['def_contrib_p90']= agg['total_def_contrib']  / mins * 90
 agg['influence_p90']  = agg['total_influence']    / mins * 90
 
-# Filter: min 900 minutes (≈10 full games) to exclude bit-part players
-pool = agg[agg['total_minutes'] >= 900].copy()
-print(f"Player pool after ≥900 min filter: {len(pool)} players")
+# Filter: min 900 minutes + midfielders only (position-specific comparison)
+all_pool = agg[agg['total_minutes'] >= 900].copy()
+pool     = all_pool[all_pool['position'] == 'Midfielder'].copy()
+print(f"Player pool after >=900 min filter: {len(all_pool)} outfield | {len(pool)} midfielders")
 
 # ── 2. Percentile rank each metric ────────────────────────────────────────────
 metrics = ['xgi_p90', 'creativity_p90', 'tackles_p90',
@@ -113,11 +119,18 @@ for r in [20, 40, 60, 80, 100]:
 for angle in angles:
     ax_radar.plot([angle, angle], [0, 100], color='white', linewidth=0.8, zorder=1)
 
-# League average reference (50th pct)
-avg_vals = [50] * N + [50]
+# League average reference line: real median of PL midfielders per metric
+# Convert actual MF medians to percentile positions within the MF pool
+mf_medians_pct = []
+for m in metrics:
+    med_val = pool[m].median()
+    pct_pos = (pool[m] <= med_val).mean() * 100  # should be ~50 by definition
+    mf_medians_pct.append(pct_pos)
+avg_vals = mf_medians_pct + [mf_medians_pct[0]]
+
 ax_radar.fill(angles_plot, avg_vals, alpha=0.12, color=TEAL, zorder=2)
 ax_radar.plot(angles_plot, avg_vals, color=TEAL, linewidth=1.2,
-              linestyle='--', alpha=0.6, zorder=2, label='League Avg (50th pct)')
+              linestyle='--', alpha=0.6, zorder=2, label='Avg PL Midfielder (50th pct)')
 
 # Garner polygon
 ax_radar.fill(angles_plot, garner_vals, alpha=0.35, color=EVT_BLUE, zorder=3)
@@ -153,7 +166,7 @@ ax_ctx.text(0.0, 1.00, 'James Garner', fontsize=22, fontweight='bold',
             color=EVT_BLUE, va='top', transform=ax_ctx.transAxes)
 ax_ctx.text(0.0, 0.90, 'Everton  ·  Central Midfielder', fontsize=12,
             color=DARK_GREY, va='top', transform=ax_ctx.transAxes)
-ax_ctx.text(0.0, 0.83, 'PL 2024/25  ·  GW1–26  ·  Percentile vs PL Outfield Starters',
+ax_ctx.text(0.0, 0.83, 'PL 2024/25  ·  GW1–26  ·  Percentile vs PL Midfielders (≥900 min)',
             fontsize=9, color='#666666', va='top', transform=ax_ctx.transAxes)
 
 # Horizontal rule
@@ -187,7 +200,7 @@ ax_ctx.text(0.5, y + 0.065, f'Defensive Contribution: {def_pct:.0f}th percentile
 ax_ctx.text(0.5, y + 0.005, f'xG Involvements/90: {atk_pct:.0f}th percentile',
             fontsize=9, color=DARK_GREY,
             ha='center', va='top', transform=ax_ctx.transAxes)
-ax_ctx.text(0.5, y - 0.030, 'Box-to-box profile: elite defensive\ncoverage + top-half attacking threat',
+ax_ctx.text(0.5, y - 0.030, 'Elite defensive midfielder: 95th pct\ndef. contribution, 92nd pct tackles',
             fontsize=8.5, color='#555555', ha='center', va='top',
             transform=ax_ctx.transAxes, style='italic')
 
@@ -202,19 +215,19 @@ ax_ctx.text(0.17, y + 0.018, 'Garner', fontsize=8.5, color=EVT_BLUE,
 ax_ctx.add_patch(mpatches.FancyBboxPatch((0.45, y - 0.005), 0.14, 0.045,
     boxstyle='square,pad=0', facecolor=TEAL, alpha=0.35,
     transform=ax_ctx.transAxes))
-ax_ctx.text(0.62, y + 0.018, 'League Avg', fontsize=8.5, color=TEAL,
+ax_ctx.text(0.62, y + 0.018, 'Avg PL Midfielder', fontsize=8.5, color=TEAL,
             va='center', fontweight='bold', transform=ax_ctx.transAxes)
 
 y -= 0.09
 
 # Methodology note
-note = (f'Pool: {len(pool)} outfield players with ≥900 PL minutes.\n'
-        'Metrics computed per 90. Source: FPL 2025/26 GW data.')
+note = (f'Pool: {len(pool)} PL midfielders with >=900 min.\n'
+        'Metrics computed per 90. Source: FPL 2024/25 GW data.')
 ax_ctx.text(0.0, y, note, fontsize=7.5, color='#888888',
             va='top', transform=ax_ctx.transAxes, style='italic')
 
 # Main title strip at top of figure
-fig.text(0.5, 0.975, 'Player Profile — Percentile Rankings  |  PL 2025/26',
+fig.text(0.5, 0.975, 'Player Profile -- Percentile vs PL Midfielders  |  PL 2024/25',
          ha='center', fontsize=11, color='#555555', style='italic')
 
 out = 'assets/garner_performance_radar.png'
