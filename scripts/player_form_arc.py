@@ -1,5 +1,5 @@
 """
-_generate_garner_arc.py
+scripts/player_form_arc.py
 Two charts:
   1. garner_cm_comparison.png  -- Radar: Garner vs Tielemans vs Wharton
   2. garner_rolling_arc.png    -- Rolling 5-GW form arc for 3 key metrics

@@ -86,7 +86,7 @@ Covers four analytical lenses:
 ## Running the Notebooks
 
 ```bash
-pip install pandas numpy matplotlib scikit-learn
+pip install -r requirements.txt
 jupyter notebook
 ```
 
@@ -99,10 +99,14 @@ Open either notebook and select **Kernel -> Restart & Run All**.
 ```text
 football-performance-analytics/
 +-- README.md
++-- requirements.txt
 +-- forward_validation_demo.ipynb
 +-- calibration_analysis.ipynb
 +-- gw26_gamestate_and_variance_autopsy.ipynb
 +-- sample_dataset.csv
++-- scripts/
+    +-- player_radar_profile.py
+    +-- player_form_arc.py
 +-- assets/
     +-- forward_validation_split.png
     +-- drift_monitoring.png
@@ -179,15 +183,17 @@ The model had Everton as **46.1% favourites** going in (BOU just 26.0%). In-game
 | Conversion rate (goals ÷ actual xG) | **34%** | **149%** |
 | Model win probability (pre-match) | **46.1%** | 26.0% |
 
-Bournemouth converted at 149% of their xG -- extreme over-conversion. Everton converted at 34% -- extreme under-conversion. The structural quality gap, both pre-match (model favourite) and in-game (xG dominated), pointed entirely to Everton. The result was decided by finishing variance alone.
+Bournemouth converted at 149% of their xG -- extreme over-conversion. Everton converted at 34% -- extreme under-conversion. The structural quality gap, both pre-match (model favourite) and in-game (xG dominated), pointed entirely to Everton. Across the full 90 minutes the structural case for Everton is clear. One complicating factor is noted below.
 
 This is precisely the scenario where results-based analysis misleads: a 1-2 loss looks like an Everton performance problem. The underlying data shows the opposite.
 
-In GW27-30 of the 2024/25 season, the model identified a structural disconnect between Everton's underlying metrics and their points return:
+*Context: Jake O'Brien (Everton) was dismissed at 69' while the score stood at 1-2. Everton generated the majority of their 2.94 xG while reduced to ten men and chasing the game -- a game state that naturally inflates attacking chances as the opposition sits deeper. This is acknowledged as a complicating factor in the pure finishing-variance classification. The pre-match model probability (46.1% Everton) and first-half process metrics are unaffected by the red card, but the post-match xG figure should be read alongside the game state, not in isolation.*
+
+In GW26-28 of the 2024/25 season, the model identified a structural disconnect between Everton's underlying metrics and their points return:
 
 | Fixture | Actual xG Diff (post-match, Everton − opp.) | DC λ home (pre-match exp. goals) | Result | Model Prediction |
 | --- | --- | --- | --- | --- |
-| Everton vs Liverpool | +0.40 (EVE 1.0 vs LIV 0.6) | 0.654 (Everton home λ) | Draw | Away win (wrong) |
+| Everton vs Liverpool | +0.40 (EVE 1.0 vs LIV 0.6) | 0.654 (Everton home λ) | Draw | Draw (correct) |
 | Crystal Palace vs Everton | −0.70 (EVE 0.9 vs PAL 1.6) | 1.096 (Palace home λ) | Everton won | Home win (wrong) |
 | Everton vs Man United | +1.20 (EVE 1.6 vs MUN 0.4) | 0.851 (Everton home λ) | Draw | Home win (narrow miss) |
 
@@ -195,7 +201,7 @@ Notes: **xG Diff** is actual post-match in-game xG from Understat data (not mode
 
 Key findings:
 
-- Against Liverpool, Everton generated **+0.40 xG differential at home** (1.0 vs 0.6) -- competitive against one of the division's strongest sides. The model favoured Liverpool as away winners (45.9%), but Everton's process quality explained the draw. A case where xG metrics gave an earlier signal than the result alone.
+- Against Liverpool, Everton generated **+0.40 xG differential at home** (1.0 vs 0.6) -- competitive against one of the division's strongest sides. The model called the draw correctly (45.9% Liverpool win, 32.9% draw, 21.2% Everton win -- draw was the modal wrong-favourite outcome). A case where xG metrics and model calibration both aligned with the result.
 - At Crystal Palace, **Crystal Palace generated 1.60 home xG vs Everton's 0.90** -- structural metrics favoured Palace, and the model predicted a Palace home win (42.2%). Everton converted and won. Classic over-conversion: process pointed one way, finishing variance decided the result.
 - Across the two Everton home fixtures in this window, Everton's DC expected goals (λ) averaged 0.75 -- below league average, reflecting a squad under structural pressure. Yet in the Man United match their actual xG reached 1.60, demonstrating the gap between season-level parameters and in-game execution.
 
@@ -207,7 +213,7 @@ Key findings:
 
 ![James Garner player profile radar showing percentile rankings vs PL midfielders](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_performance_radar.png?v=20250401)
 
-*Percentile radar vs 121 PL midfielders with ≥900 Premier League minutes in 2025/26 (GW1–26). All metrics per 90. Source: FPL 2025/26 GW data.*
+*Percentile radar vs 121 PL midfielders with ≥900 Premier League minutes in 2025/26 (GW1–26). All metrics per 90. Source: FPL API 2025/26 event live endpoints (GW1-26 player files), processed via `scripts/player_radar_profile.py`.*
 
 Garner's profile is one of the most analytically interesting in the division. Across 2,333 minutes this season:
 
@@ -226,7 +232,7 @@ What makes this profile compelling for recruitment analysis: Garner sits in the 
 
 ![Comparative radar Garner vs Wharton vs Tielemans all PL CM percentiles](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_cm_comparison.png?v=20250302)
 
-*All metrics per 90, percentile vs PL outfield starters (≥900 min, GW1–26). Real FPL 2025/26 data.*
+*All metrics per 90, percentile vs **249 PL outfield starters** (≥900 min, GW1–26) -- note: this comparison uses the full outfield pool, not the midfielder-only pool used in the individual radar above. Garner's percentiles are higher here because forwards and wingers typically score lower on defensive metrics. Real FPL 2025/26 data.*
 
 | Metric | Garner | Wharton | Tielemans |
 | --- | --- | --- | --- |
@@ -255,7 +261,7 @@ From an academy analytics perspective: this is the same radar logic applied to d
 
 ![Academy Development Monitor](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_academy_development_monitor.png?v=20260221)
 
-*Real-player development monitor built from FPL 2025/26 gameweek player files (Mateus Mané). The chart uses chances-created-per-90 and rolling Z-score versus GW cohort baseline to separate development signal from short-term noise.*
+*Real-player development monitor built from FPL 2025/26 gameweek player files (Mateus Mané, Wolverhampton Wanderers). The chart uses chances-created-per-90 and rolling Z-score versus GW cohort baseline to separate development signal from short-term noise.*
 
 The methodology here is directly transferable to academy performance analysis:
 

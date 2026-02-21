@@ -1,5 +1,5 @@
 """
-_generate_garner_radar.py
+scripts/player_radar_profile.py
 Generates a professional player profile radar for James Garner (Everton)
 ranking him percentile vs PL midfielders with >=900 min, GW1-26 2025/26.
 Output: assets/garner_performance_radar.png
