@@ -159,7 +159,23 @@ football-performance-analytics/
 
 ![Everton Finishing Variance Deep Dive showing pre-match vs in-game xG comparison](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_everton_finishing_variance.png?v=20260221)
 
-*Real GW26 context plot: pre-match model xG (1.06 vs 0.98) versus actual in-game xG (2.94 vs 1.34), with Everton DC attack trend over recent matches. The match is classified as finishing variance (process right, conversion wrong), not structural attack collapse.*
+*Real GW26 context plot: pre-match DC goal expectancy (EVE 1.06 vs BOU 0.98, model-predicted) versus actual in-game Understat xG (EVE 2.94 vs BOU 1.34, post-match), with Everton's DC attack trend over recent matches. The match is classified as finishing variance -- process was right, conversion failed.*
+
+**EVE 1-2 BOU (GW26) -- the unlucky loss in numbers:**
+
+The model had Everton as **46.1% favourites** going in (BOU just 26.0%). In-game, Everton massively exceeded their pre-match expectation -- generating **2.94 actual xG** against Bournemouth's 1.34. Everton dominated the underlying process by **+1.60 xG**, yet lost 1-2.
+
+| Metric | Everton | Bournemouth |
+| --- | --- | --- |
+| Pre-match model predicted xG (DC λ) | 1.06 | 0.98 |
+| Actual in-game Understat xG | **2.94** | 1.34 |
+| Goals scored | 1 | **2** |
+| Conversion rate (goals ÷ actual xG) | **34%** | **149%** |
+| Model win probability (pre-match) | **46.1%** | 26.0% |
+
+Bournemouth converted at 149% of their xG -- extreme over-conversion. Everton converted at 34% -- extreme under-conversion. The structural quality gap, both pre-match (model favourite) and in-game (xG dominated), pointed entirely to Everton. The result was decided by finishing variance alone.
+
+This is precisely the scenario where results-based analysis misleads: a 1-2 loss looks like an Everton performance problem. The underlying data shows the opposite.
 
 In GW27-30 of the 2024/25 season, the model identified a structural disconnect between Everton's underlying metrics and their points return:
 
