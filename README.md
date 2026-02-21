@@ -77,6 +77,7 @@ Covers four analytical lenses:
 | GW26 Territorial Dominance | ![GW26 Territorial Dominance chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_territorial_dominance.png?v=20260221) |
 | GW26 Volatility Heatmap | ![GW26 Volatility Heatmap matrix](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_volatility_heatmap.png?v=20260221) |
 | GW26 Variance Autopsy | ![GW26 Variance Autopsy breakdown chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_variance_autopsy.png?v=20260221) |
+| James Garner Profile | ![James Garner player profile radar chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_performance_radar.png?v=20260221) |
 
 ---
 
@@ -114,6 +115,7 @@ football-performance-analytics/
     +-- gw26_academy_development_monitor.png
     +-- everton_process_vs_results.png
     +-- xg_inefficiency_scatter.png
+    +-- garner_performance_radar.png
 ```
 
 ---
@@ -194,6 +196,29 @@ Key findings:
 - Across the two Everton home fixtures in this window, Everton's DC expected goals (λ) averaged 0.75 -- below league average, reflecting a squad under structural pressure. Yet in the Man United match their actual xG reached 1.60, demonstrating the gap between season-level parameters and in-game execution.
 
 **The analytical value:** A team can show process improvement (consistent positive xG differentials, strong DC parameters) before results catch up. This is precisely the kind of signal academy analysts need -- identifying development in advance of points, not retroactively.
+
+---
+
+## Player Spotlight: James Garner (Everton)
+
+![James Garner player profile radar showing percentile rankings vs all PL outfield starters](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_performance_radar.png?v=20260221)
+
+*Percentile radar vs 212 outfield players with ≥900 Premier League minutes in 2025/26 (GW1–22). All metrics per 90. Source: FPL 2025/26 GW data.*
+
+Garner's profile is one of the most analytically interesting in the division. Across 1,973 minutes this season:
+
+| Metric | Per 90 | Percentile (vs 212 PL starters) |
+| --- | --- | --- |
+| Defensive Contribution | 12.4 | **95th** |
+| Tackles | 2.9 | **92nd** |
+| Ball Recoveries | 5.2 | **89th** |
+| Chance Creation (Creativity) | 20.7 | **78th** |
+| Overall Influence | 23.6 | **77th** |
+| xG Involvements | 0.21 | 59th |
+
+What makes this profile compelling for recruitment analysis: Garner sits in the top 5% of all PL starters for defensive coverage, yet his creativity (78th pct) and influence (77th pct) confirm this is not a pure defensive holding role. The xGI (59th) is the one metric with room to grow -- consistent with a player whose primary function is progression and defensive structure rather than final-ball delivery. The profile maps directly onto a Casemiro-style box-to-box successor template: elite ball-winning, above-average chance creation, below-average goal involvement (by design).
+
+From an academy analytics perspective: this is the same radar logic applied to development -- identifying players who are elite on process metrics (defensive coverage, pressing intensity) even when their output metrics (goals, assists) don't yet reflect it. The gap between 59th pct xGI and 95th pct defensive contribution is not a weakness -- it is a **system fit** question.
 
 ---
 
