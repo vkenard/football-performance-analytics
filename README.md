@@ -78,6 +78,8 @@ Covers four analytical lenses:
 | GW26 Volatility Heatmap | ![GW26 Volatility Heatmap matrix](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_volatility_heatmap.png?v=20260221) |
 | GW26 Variance Autopsy | ![GW26 Variance Autopsy breakdown chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_variance_autopsy.png?v=20260221) |
 | James Garner Profile | ![James Garner player profile radar chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_performance_radar.png?v=20260221) |
+| Garner vs Wharton vs Tielemans | ![Comparative radar: Garner vs Wharton vs Tielemans](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_cm_comparison.png?v=20260221) |
+| Garner Rolling Form Arc | ![Garner rolling 5-GW form arc across 4 metrics](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_rolling_arc.png?v=20260221) |
 
 ---
 
@@ -116,6 +118,8 @@ football-performance-analytics/
     +-- everton_process_vs_results.png
     +-- xg_inefficiency_scatter.png
     +-- garner_performance_radar.png
+    +-- garner_cm_comparison.png
+    +-- garner_rolling_arc.png
 ```
 
 ---
@@ -216,7 +220,32 @@ Garner's profile is one of the most analytically interesting in the division. Ac
 | Overall Influence | 23.6 | **77th** |
 | xG Involvements | 0.21 | 59th |
 
-What makes this profile compelling for recruitment analysis: Garner sits in the top 5% of all PL starters for defensive coverage, yet his creativity (78th pct) and influence (77th pct) confirm this is not a pure defensive holding role. The xGI (59th) is the one metric with room to grow -- consistent with a player whose primary function is progression and defensive structure rather than final-ball delivery. The profile maps directly onto a Casemiro-style box-to-box successor template: elite ball-winning, above-average chance creation, below-average goal involvement (by design).
+What makes this profile compelling for recruitment analysis: Garner sits in the top 5% of all PL starters for defensive coverage, yet his creativity (78th pct) and influence (78th pct) confirm this is not a pure defensive holding role. The xGI (59th) is the one metric with room to grow -- consistent with a player whose primary function is progression and defensive structure rather than final-ball delivery.
+
+### Comparison: Garner vs Wharton vs Tielemans
+
+![Comparative radar Garner vs Wharton vs Tielemans all PL CM percentiles](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_cm_comparison.png?v=20260221)
+
+*All metrics per 90, percentile vs 212 PL outfield starters (≥900 min, GW1–22). Real FPL 2025/26 data.*
+
+| Metric | Garner | Wharton | Tielemans |
+| --- | --- | --- | --- |
+| Defensive Contribution | **95th** | 80th | 61st |
+| Tackles | **92nd** | 89th | 91st |
+| Ball Recoveries | 89th | **92nd** | 79th |
+| Chance Creation | 78th | 82nd | **89th** |
+| Overall Influence | 78th | 19th | 57th |
+| xG Involvements | 59th | 71st | 63rd |
+
+The comparison clarifies the profile distinctions. Wharton (Crystal Palace) has nearly identical defensive numbers to Garner but sits at just the **19th percentile for overall influence** -- effective in the defensive phase but limited in his larger footprint on matches. Tielemans (Aston Villa) ranks highest for creativity (89th) but is 34 percentile points below Garner on defensive contribution. Garner uniquely combines defensive dominance with above-average creative and match-influence numbers -- a rarer profile than any single metric suggests.
+
+### Season Form Arc
+
+![Garner rolling 5-GW form arc across 4 key metrics](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_rolling_arc.png?v=20260221)
+
+*Rolling 5-GW average across 4 per-90 metrics. Weekly bars show individual match values; line shows smoothed form trajectory. GW19 annotated (goal + assist). All 22 GWs played; 1,973 minutes.*
+
+The rolling arc demonstrates consistency and development trajectory -- not just snapshot ability. GW19 (goal + assist vs Leicester) is visible as the natural spike but the underlying defensive contribution and tackles metrics are elevated **across the full second half of the season** (GW14-22), not just the standout week. This is the kind of evidence-based form narrative that separates genuine development from noise -- directly applicable to the same framework used for academy monitoring.
 
 From an academy analytics perspective: this is the same radar logic applied to development -- identifying players who are elite on process metrics (defensive coverage, pressing intensity) even when their output metrics (goals, assists) don't yet reflect it. The gap between 59th pct xGI and 95th pct defensive contribution is not a weakness -- it is a **system fit** question.
 
