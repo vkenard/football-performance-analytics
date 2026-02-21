@@ -237,7 +237,7 @@ for roll_col, raw_col, title, colour, ax in panels:
     ax.set_title(title, fontsize=9.5, fontweight='bold', color=DARK, pad=5)
     ax.set_xlabel('Gameweek', fontsize=8)
     ax.tick_params(axis='both', labelsize=8)
-    ax.set_xlim(0.5, 22.5)
+    ax.set_xlim(0.5, 26.5)
     ax.set_xticks(gws[::2])
     ax.legend(fontsize=7.5, frameon=False)
     for sp in ['top','right']:
@@ -252,9 +252,12 @@ for roll_col, raw_col, title, colour, ax in panels:
                     fontsize=7, color=colour, fontweight='bold',
                     arrowprops=dict(arrowstyle='->', color=colour, lw=1.2))
 
+n_starts   = len(g90)
+total_mins = int(g90['minutes'].sum())
+max_gw     = int(g90['gw'].max())
 fig2.suptitle(
-    'James Garner — Rolling Form Arc  |  PL 2025/26 GW1–22\n'
-    'Real FPL GW data · Per-90 values · All 22 starts (1,973 min)',
+    f'James Garner \u2014 Rolling Form Arc  |  PL 2025/26 GW1\u2013{max_gw}\n'
+    f'Real FPL GW data \u00b7 Per-90 values \u00b7 All {n_starts} starts ({total_mins:,} min)',
     fontsize=11, fontweight='bold', color=DARK, y=1.01
 )
 

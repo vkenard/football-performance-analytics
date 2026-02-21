@@ -80,6 +80,7 @@ Covers four analytical lenses:
 | James Garner Profile | ![James Garner player profile radar chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_performance_radar.png?v=20250302) |
 | Garner vs Wharton vs Tielemans | ![Comparative radar: Garner vs Wharton vs Tielemans](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_cm_comparison.png?v=20250302) |
 | Garner Rolling Form Arc | ![Garner rolling 5-GW form arc across 4 metrics](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_rolling_arc.png?v=20250302) |
+| Everton Squad Player Radars | ![Everton squad player radar grid — all 15 qualifying players, percentile vs positional PL peers](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/everton_player_radars.png?v=20260221) |
 
 ---
 
@@ -124,6 +125,13 @@ football-performance-analytics/
     +-- garner_performance_radar.png
     +-- garner_cm_comparison.png
     +-- garner_rolling_arc.png
+    +-- everton_player_radars.png
+    +-- everton_player_radar_Pickford.png
+    +-- everton_player_radar_Tarkowski.png
+    +-- everton_player_radar_Garner.png
+    +-- everton_player_radar_Ndiaye.png
+    +-- everton_player_radar_Barry.png
+    +-- [+ 10 individual player radars]
 ```
 
 ---
@@ -270,6 +278,20 @@ The methodology here is directly transferable to academy performance analysis:
 - **Longitudinal trend analysis** -- the chronological split discipline prevents retrospective overfitting, ensuring insights reflect genuine development rather than noise
 - **Coaching interventions** -- drift detection flags windows where performance patterns shift, prompting targeted review rather than waiting for results to deteriorate
 - **Recruitment and scouting** -- the xG differential and Dixon-Coles parameters identify players and teams that are structurally outperforming their actual results. A young forward whose team has a consistently negative xG differential (poor service) but who personally contributes above-average shot quality is structurally undervalued by results-based scouting. This framework separates individual contribution from collective outcome -- directly applicable to identifying underpriced talent at academy or senior level.
+
+---
+
+---
+
+## Limitations & Future Work
+
+The current model has well-defined scope boundaries:
+
+- **Dixon-Coles baseline uses goals and xG, not action-level data:** DC parameters are fitted on Understat expected goals. Incorporating Expected Threat (xT) grid values or SPADL action-level sequences would improve structural team-strength estimates, particularly for press-heavy sides whose value is underweighted by goal-based metrics alone.
+- **No player-tracking or GPS data:** Squad-level features (injury severity proxies, FPL ICT) are statistical rather than physical. Direct GPS-derived output (high-intensity runs, pressing distance covered) would substantially improve injury-impact and pressing-intensity signals.
+- **Single-league scope:** Trained on Premier League only (2021–26). Cross-league recruitment analysis — for example, predicting Championship-to-PL transition performance — requires a separate model with division-level strength normalisation.
+- **Model frozen between re-trains:** The LightGBM/CatBoost ensemble was static from the GW18 freeze through GW26, producing measurable calibration degradation over time (LL: ~0.80 in-window → ~1.12 post-freeze window). Automated weekly re-training with drift-detection triggers is the correct production-ready next step.
+- **Player radar axes limited to FPL-available metrics:** Individual player radars use FPL API event-level stats (xG, xA, creativity, threat, defensive contribution, tackles). Progressive passes, pressures, and PPDA are not in the FPL data feed — these would require Opta or StatsBomb licensing for a production recruitment system.
 
 ---
 
