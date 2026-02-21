@@ -56,9 +56,9 @@ Covers four analytical lenses:
 
 - **Goal-Line Accuracy**: 80% on both 2.5 and 3.5 thresholds (8/10 completed fixtures) -- volumetric signal held directionally on a week where the 1X2 market collapsed
 - **Territorial Dominance**: Corner Territorial Pressure Index per team, validated against actuals with four-quadrant game-state classification
-- **Match Volatility Heatmap**: Four-corner matrix (High/Low xG × High/Low corners) classifying each fixture by pre-match structural volatility
+- **Match Volatility Heatmap**: Four-corner matrix (High/Low **pre-match model-predicted xG** × High/Low predicted corners) classifying each fixture by pre-match structural volatility
 - **Macro Variance Autopsy**: 2×2 Model vs Home-Win Baseline breakdown isolating the **Alpha Zone** (WHU v MUN: model called the draw the naive baseline missed) from **Structural Chaos** (8/11 games unpredictable by any rule-based system), with **EVE v BOU explicitly classified as Finishing Variance**. Discrimination gap +0.5pp remains near-zero calibration separation.
-- **Black Swan Example (WOL v ARS 2-2)**: Textbook extreme variance event where Wolves (attack strength -0.87, very weak) scored 2 goals against Arsenal's elite defense (defensive strength -0.65). Model predicted 59.2% Arsenal win with 2.38 xG total; actual result was 4 goals and a draw (+1.62 goal variance). This validates that the model correctly identified the structural quality gap -- the parameters were right; the outcome was a statistical outlier.
+- **Black Swan Example (WOL v ARS 2-2)**: Textbook extreme variance event where Wolves (attack strength -0.87, very weak) scored 2 goals against Arsenal's elite defense (defensive strength -0.65). Model predicted 59.2% Arsenal win with a pre-match DC goal expectancy of 2.38 total (λ_home + λ_away); actual result was 4 goals and a draw (+1.62 goals above model expectancy). This validates that the model correctly identified the structural quality gap -- the parameters were right; the outcome was a statistical outlier.
 
 **Notebooks 1 and 2 are fully self-contained** -- clone the repo and run from top to bottom with no additional setup. Notebook 3 (`gw26_gamestate_and_variance_autopsy.ipynb`) reads proprietary match-feature data not included in the public repo; all cells have pre-rendered outputs so the analysis is fully viewable without re-running.
 
@@ -143,7 +143,7 @@ football-performance-analytics/
 
 ![Everton Process vs Results dual-axis rolling 5-game comparison chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/everton_process_vs_results.png?v=20260221)
 
-*Dual-axis rolling 5-game comparison: actual points per game (blue, left axis) vs Goal Expectancy per game (orange, right axis). Shaded windows highlight periods where structural quality (xG) exceeded results -- the analytical case for maintaining confidence in a squad despite a short-term points slump.*
+*Dual-axis rolling 5-game comparison: actual points per game (blue, left axis) vs actual post-match Understat xG per game (orange, right axis). Shaded windows highlight periods where structural quality (actual xG) exceeded the points return -- the analytical case for maintaining confidence in a squad despite a short-term points slump.*
 
 ### xG Efficiency Profile: Identifying Structural Under- and Over-performance
 
