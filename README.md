@@ -68,15 +68,15 @@ Covers four analytical lenses:
 
 | Chart | Preview |
 | --- | --- |
-| Forward Validation Split | ![Forward Validation Split chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/forward_validation_split.png) |
-| Drift Monitoring | ![Drift Monitoring chart showing Brier score over time](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/drift_monitoring.png) |
-| Calibration Curve | ![Calibration Curve chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/calibration_curve.png) |
-| Decile Reliability | ![Decile Reliability table chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/decile_reliability.png) |
-| Feature Importance | ![Feature Importance bar chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/feature_importance.png) |
-| GW26 Goal Expectancy | ![GW26 Goal Expectancy chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_goal_expectancy.png) |
-| GW26 Territorial Dominance | ![GW26 Territorial Dominance chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_territorial_dominance.png) |
-| GW26 Volatility Heatmap | ![GW26 Volatility Heatmap matrix](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_volatility_heatmap.png) |
-| GW26 Variance Autopsy | ![GW26 Variance Autopsy breakdown chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_variance_autopsy.png) |
+| Forward Validation Split | ![Forward Validation Split chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/forward_validation_split.png?v=20260221) |
+| Drift Monitoring | ![Drift Monitoring chart showing Brier score over time](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/drift_monitoring.png?v=20260221) |
+| Calibration Curve | ![Calibration Curve chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/calibration_curve.png?v=20260221) |
+| Decile Reliability | ![Decile Reliability table chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/decile_reliability.png?v=20260221) |
+| Feature Importance | ![Feature Importance bar chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/feature_importance.png?v=20260221) |
+| GW26 Goal Expectancy | ![GW26 Goal Expectancy chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_goal_expectancy.png?v=20260221) |
+| GW26 Territorial Dominance | ![GW26 Territorial Dominance chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_territorial_dominance.png?v=20260221) |
+| GW26 Volatility Heatmap | ![GW26 Volatility Heatmap matrix](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_volatility_heatmap.png?v=20260221) |
+| GW26 Variance Autopsy | ![GW26 Variance Autopsy breakdown chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_variance_autopsy.png?v=20260221) |
 
 ---
 
@@ -141,13 +141,13 @@ football-performance-analytics/
 
 ### Visualising Structural Underperformance
 
-![Everton Process vs Results dual-axis rolling 5-game comparison chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/everton_process_vs_results.png)
+![Everton Process vs Results dual-axis rolling 5-game comparison chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/everton_process_vs_results.png?v=20260221)
 
 *Dual-axis rolling 5-game comparison: actual points per game (blue, left axis) vs Goal Expectancy per game (orange, right axis). Shaded windows highlight periods where structural quality (xG) exceeded results -- the analytical case for maintaining confidence in a squad despite a short-term points slump.*
 
 ### xG Efficiency Profile: Identifying Structural Under- and Over-performance
 
-![xG Inefficiency Scatter plot showing team xG vs points per game](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/xg_inefficiency_scatter.png)
+![xG Inefficiency Scatter plot showing team xG vs points per game](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/xg_inefficiency_scatter.png?v=20260221)
 
 *Each point is a team's mean xG per game (x) vs mean points per game (y), coloured by how far above or below the xG-to-points regression line they sit. Teams in the **bottom-right quadrant** (High xG, Low PPG) are generating quality chances but failing to convert them to results -- the structural "underperforming" profile. Teams in the **top-left quadrant** (Low xG, High PPG) are over-converting -- riding form or finishing luck that is statistically unlikely to persist. The four-corner labels frame each zone for direct scouting and squad-planning language: "Structural Candidate" (bottom-right) vs "Fortunate / Regression Risk" (top-left). Applied to academy players: replace team xG with player progressive passes/shot-creating actions and the same quadrant logic identifies who is producing process indicators before results reward them.*
 
@@ -157,7 +157,7 @@ football-performance-analytics/
 
 ### GW26 Finishing Variance Context (Everton)
 
-![Everton Finishing Variance Deep Dive showing pre-match vs in-game xG comparison](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_everton_finishing_variance.png)
+![Everton Finishing Variance Deep Dive showing pre-match vs in-game xG comparison](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_everton_finishing_variance.png?v=20260221)
 
 *Real GW26 context plot: pre-match model xG (1.06 vs 0.98) versus actual in-game xG (2.94 vs 1.34), with Everton DC attack trend over recent matches. The match is classified as finishing variance (process right, conversion wrong), not structural attack collapse.*
 
@@ -183,7 +183,7 @@ Key findings:
 
 ## Academy Application
 
-![Academy Development Monitor](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_academy_development_monitor.png)
+![Academy Development Monitor](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_academy_development_monitor.png?v=20260221)
 
 *Real-player development monitor built from FPL 2025/26 gameweek player files (Mateus Mané). The chart uses chances-created-per-90 and rolling Z-score versus GW cohort baseline to separate development signal from short-term noise.*
 
