@@ -64,6 +64,15 @@ Covers: 3-way accuracy, binary accuracy, Brier score, Brier Skill Score, rolling
 Assesses probability reliability using a quantile-binned reliability curve.
 Covers: calibration curve, Brier score vs historical baseline, decile reliability table and chart.
 
+### 4. `mc_player_projection.ipynb` *(new — fully self-contained)*
+
+Runnable demonstration of the vectorised Monte Carlo simulation engine.
+**Requires only:** `numpy`, `pandas`, `matplotlib` — no proprietary data.
+
+Covers: Dixon-Coles fixture-level Poisson lambdas, Bernoulli availability masks, Binomial thinning for individual goals/assists, position-specific FPL scoring dispatch table (no branching), P10/P50/P90 percentile summary, three-panel dark-themed visualisation. All 300,000 simulations (6 players × 5 fixtures × 10,000 iterations) execute in a single vectorised pass with no Python loops.
+
+![Monte Carlo FPL Projection — expected points range, distribution overlay, fixture heatmap](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/mc_projection_output.png?v=20260503)
+
 ### 3. `gw26_gamestate_and_variance_autopsy.ipynb`
 
 Forensic multi-market post-match analysis of Gameweek 26 using real GW26 prediction data.
@@ -75,7 +84,7 @@ Covers four analytical lenses:
 - **Macro Variance Autopsy**: 2×2 Model vs Home-Win Baseline breakdown isolating the **Alpha Zone** (WHU v MUN: model called the draw the naive baseline missed) from **Structural Chaos** (8/11 games unpredictable by any rule-based system)
 - **Black Swan Example (WOL v ARS 2-2)**: Wolves (attack strength −0.87) scored 2 goals against Arsenal's elite defence. Model predicted 59.2% Arsenal win; result was a draw. Pre-match DC expectancy: 2.38 total goals; actual: 4 goals (+1.62 above model). Parameters were right — the outcome was a statistical outlier.
 
-**Notebooks 1 and 2 are fully self-contained** — clone the repo and run from top to bottom with no additional setup. Notebook 3 reads proprietary match-feature data not included in the public repo; all cells have pre-rendered outputs so the analysis is fully viewable without re-running.
+**Notebooks 1, 2, and 4 are fully self-contained** — clone the repo and run from top to bottom with no additional setup beyond `pip install -r requirements.txt`. Notebook 3 reads proprietary match-feature data not included in the public repo; all cells have pre-rendered outputs so the analysis is fully viewable without re-running.
 
 ---
 
@@ -92,6 +101,7 @@ Covers four analytical lenses:
 | GW26 Territorial Dominance | ![GW26 Territorial Dominance chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_territorial_dominance.png?v=20260221) |
 | GW26 Volatility Heatmap | ![GW26 Volatility Heatmap matrix](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_volatility_heatmap.png?v=20260221) |
 | GW26 Variance Autopsy | ![GW26 Variance Autopsy breakdown chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_variance_autopsy.png?v=20260221) |
+| MC Projection — Expected Points Range | ![Monte Carlo FPL Projection — expected points with P10–P90 band, distribution overlay, fixture heatmap](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/mc_projection_output.png?v=20260503) |
 | James Garner Profile | ![James Garner player profile radar chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_performance_radar.png?v=20250302) |
 | Garner vs Wharton vs Tielemans | ![Comparative radar: Garner vs Wharton vs Tielemans](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_cm_comparison.png?v=20250302) |
 | Garner Rolling Form Arc | ![Garner rolling 5-GW form arc across 4 metrics](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/garner_rolling_arc.png?v=20250302) |
@@ -125,6 +135,8 @@ The production system includes Monte Carlo simulation engines that run at predic
 
 **Why this matters technically:** The engine vectorises fixture-level Poisson draws across 378 players × N remaining fixtures × 10,000 iterations without looping in Python. Player availability adjustments are applied as Bernoulli masks over the simulation matrix, and position-specific scoring is handled by a dispatch table rather than branching logic.
 
+**See it in action:** `mc_player_projection.ipynb` is a fully runnable, self-contained demonstration of this engine — synthetic but calibrated to realistic Premier League ranges, no proprietary data required.
+
 ---
 
 ## Running the Notebooks
@@ -134,7 +146,9 @@ pip install -r requirements.txt
 jupyter notebook
 ```
 
-Open either notebook and select **Kernel -> Restart & Run All**.
+Open any notebook and select **Kernel -> Restart & Run All**.
+
+Notebooks 1, 2, and 4 (`forward_validation_demo`, `calibration_analysis`, `mc_player_projection`) are fully self-contained — no additional data required. Notebook 3 (`gw26_gamestate_and_variance_autopsy`) has pre-rendered outputs and is viewable without re-running.
 
 ---
 
@@ -147,6 +161,7 @@ football-performance-analytics/
 +-- forward_validation_demo.ipynb
 +-- calibration_analysis.ipynb
 +-- gw26_gamestate_and_variance_autopsy.ipynb
++-- mc_player_projection.ipynb           [NEW: vectorised Monte Carlo simulation engine demo]
 +-- sample_dataset.csv
 +-- scripts/
     +-- player_radar_profile.py
@@ -157,10 +172,11 @@ football-performance-analytics/
     +-- calibration_curve.png
     +-- decile_reliability.png
     +-- feature_importance.png
-    +-- fixture_difficulty_ratings.png    [NEW: GW31-38 DC difficulty ratings]
-    +-- fixture_difficulty_xgf.png        [NEW: GW31-38 expected goals for]
-    +-- fixture_difficulty_xgc.png        [NEW: GW31-38 expected goals against]
-    +-- fixture_difficulty_cs.png         [NEW: GW31-38 clean sheet probability]
+    +-- mc_projection_output.png           [NEW: MC simulation — expected pts range, distributions, heatmap]
+    +-- fixture_difficulty_ratings.png     [NEW: GW31-38 DC difficulty ratings]
+    +-- fixture_difficulty_xgf.png         [NEW: GW31-38 expected goals for]
+    +-- fixture_difficulty_xgc.png         [NEW: GW31-38 expected goals against]
+    +-- fixture_difficulty_cs.png          [NEW: GW31-38 clean sheet probability]
     +-- gw26_goal_expectancy.png
     +-- gw26_territorial_dominance.png
     +-- gw26_volatility_heatmap.png
