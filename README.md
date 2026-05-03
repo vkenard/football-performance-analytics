@@ -96,12 +96,14 @@ The included `sample_dataset.csv` (348 matches, 2023–2026) shows **61.8% 3-way
 Assesses probability reliability using a quantile-binned reliability curve.
 Covers: calibration curve, Brier score vs historical baseline, decile reliability table and chart.
 
-### 4. `mc_player_projection.ipynb` *(new — fully self-contained)*
+### 4. `mc_player_projection.ipynb` *(fully self-contained — interactive)*
 
-Runnable demonstration of the vectorised Monte Carlo simulation engine.
-**Requires only:** `numpy`, `pandas`, `matplotlib` — no proprietary data.
+Runnable demonstration of the vectorised Monte Carlo simulation engine with **live ipywidgets controls**.
+**Requires only:** `numpy`, `pandas`, `matplotlib`, `ipywidgets` — no proprietary data.
 
-Covers: Dixon-Coles fixture-level Poisson lambdas, Bernoulli availability masks, Binomial thinning for individual goals/assists, position-specific FPL scoring dispatch table (no branching), P10/P50/P90 percentile summary, three-panel dark-themed visualisation. All 300,000 simulations (6 players × 5 fixtures × 10,000 iterations) execute in a single vectorised pass with no Python loops.
+Covers: Dixon-Coles fixture-level Poisson lambdas, Bernoulli availability masks, Binomial thinning for individual goals/assists, position-specific FPL scoring dispatch table (no branching), P10/P50/P90 percentile summary, three-panel dark-themed visualisation.
+
+**Interactive controls (live Jupyter):** 9 sliders — iteration count, per-player availability probability (×6), attack λ scale, concede λ scale. Click **Run Interact** to re-run the 300,000-cell tensor simulation with new parameters. Static pre-rendered output is embedded for GitHub viewing.
 
 ![Monte Carlo FPL Projection — expected points range, distribution overlay, fixture heatmap](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/mc_projection_output.png?v=20260503)
 
@@ -167,7 +169,7 @@ The production system includes Monte Carlo simulation engines that run at predic
 
 **Why this matters technically:** The engine vectorises fixture-level Poisson draws across 378 players × N remaining fixtures × 10,000 iterations without looping in Python. Player availability adjustments are applied as Bernoulli masks over the simulation matrix, and position-specific scoring is handled by a dispatch table rather than branching logic.
 
-**See it in action:** `mc_player_projection.ipynb` is a fully runnable, self-contained demonstration of this engine — synthetic but calibrated to realistic Premier League ranges, no proprietary data required.
+**See it in action:** `mc_player_projection.ipynb` is a fully runnable, interactive demonstration of this engine — 9 ipywidgets sliders control availability, fixture difficulty, and iteration count. Synthetic but calibrated to realistic Premier League ranges, no proprietary data required.
 
 ---
 
@@ -180,7 +182,7 @@ jupyter notebook
 
 Open any notebook and select **Kernel -> Restart & Run All**.
 
-Notebooks 1, 2, and 4 (`forward_validation_demo`, `calibration_analysis`, `mc_player_projection`) are fully self-contained — no additional data required. Notebook 3 (`gw26_gamestate_and_variance_autopsy`) has pre-rendered outputs and is viewable without re-running.
+Notebooks 1, 2, and 4 (`forward_validation_demo`, `calibration_analysis`, `mc_player_projection`) are fully self-contained — no additional data required. Notebook 4's interactive widget controls require `ipywidgets>=8.0` (included in `requirements.txt`). Notebook 3 (`gw26_gamestate_and_variance_autopsy`) has pre-rendered outputs and is viewable without re-running.
 
 ---
 
