@@ -161,7 +161,7 @@ football-performance-analytics/
 +-- forward_validation_demo.ipynb
 +-- calibration_analysis.ipynb
 +-- gw26_gamestate_and_variance_autopsy.ipynb
-+-- mc_player_projection.ipynb           [NEW: vectorised Monte Carlo simulation engine demo]
++-- mc_player_projection.ipynb           ← vectorised Monte Carlo simulation engine demo
 +-- sample_dataset.csv
 +-- scripts/
     +-- player_radar_profile.py
@@ -172,11 +172,11 @@ football-performance-analytics/
     +-- calibration_curve.png
     +-- decile_reliability.png
     +-- feature_importance.png
-    +-- mc_projection_output.png           [NEW: MC simulation — expected pts range, distributions, heatmap]
-    +-- fixture_difficulty_ratings.png     [NEW: GW31-38 DC difficulty ratings]
-    +-- fixture_difficulty_xgf.png         [NEW: GW31-38 expected goals for]
-    +-- fixture_difficulty_xgc.png         [NEW: GW31-38 expected goals against]
-    +-- fixture_difficulty_cs.png          [NEW: GW31-38 clean sheet probability]
+    +-- mc_projection_output.png
+    +-- fixture_difficulty_ratings.png
+    +-- fixture_difficulty_xgf.png
+    +-- fixture_difficulty_xgc.png
+    +-- fixture_difficulty_cs.png
     +-- gw26_goal_expectancy.png
     +-- gw26_territorial_dominance.png
     +-- gw26_volatility_heatmap.png
