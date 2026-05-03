@@ -194,8 +194,9 @@ football-performance-analytics/
 +-- mc_player_projection.ipynb           ← vectorised Monte Carlo simulation engine demo
 +-- sample_dataset.csv
 +-- scripts/
-    +-- player_radar_profile.py
-    +-- player_form_arc.py
+    +-- player_radar_profile.py     ← percentile radar vs 121 PL midfielders (Garner)
+    +-- player_form_arc.py          ← rolling form arc + CM comparison radar
+    +-- everton_squad_radar.py      ← squad-level percentile grid (15 players)
 +-- assets/
     +-- forward_validation_split.png
     +-- drift_monitoring.png
@@ -250,6 +251,12 @@ football-performance-analytics/
 ![Everton Process vs Results dual-axis rolling 5-game comparison chart](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/everton_process_vs_results.png?v=20260221)
 
 *Dual-axis rolling 5-game comparison: actual points per game (blue, left axis) vs actual post-match Understat xG per game (orange, right axis). Shaded windows highlight periods where structural quality (actual xG) exceeded the points return — the analytical case for maintaining confidence in a squad despite a short-term points slump.*
+
+### Team Process Radar: Positional & Structural Profiling
+
+![Everton team process radar — positional strength profile across 6 dimensions](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/everton_team_process_radar.png?v=20260221)
+
+*Team-level radar profiling structural offensive and defensive contributions across six dimensions. Built from per-90 Understat and FPL tracking metrics. Same framework scales to any team or player subset — radar axes are parameterised, not hardcoded.*
 
 ### xG Efficiency Profile: Identifying Structural Under- and Over-performance
 
