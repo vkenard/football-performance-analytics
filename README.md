@@ -98,6 +98,8 @@ Covers: calibration curve, Brier score vs historical baseline, decile reliabilit
 
 ### 4. `mc_player_projection.ipynb` *(fully self-contained — interactive)*
 
+[![Launch on Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/vkenard/football-performance-analytics/main?labpath=mc_player_projection.ipynb)
+
 Runnable demonstration of the vectorised Monte Carlo simulation engine with **live ipywidgets controls**.
 **Requires only:** `numpy`, `pandas`, `matplotlib`, `ipywidgets` — no proprietary data.
 
@@ -169,7 +171,10 @@ The production system includes Monte Carlo simulation engines that run at predic
 
 **Why this matters technically:** The engine vectorises fixture-level Poisson draws across 378 players × N remaining fixtures × 10,000 iterations without looping in Python. Player availability adjustments are applied as Bernoulli masks over the simulation matrix, and position-specific scoring is handled by a dispatch table rather than branching logic.
 
-**See it in action:** `mc_player_projection.ipynb` is a fully runnable, interactive demonstration of this engine — 9 ipywidgets sliders control availability, fixture difficulty, and iteration count. Synthetic but calibrated to realistic Premier League ranges, no proprietary data required.
+**See it in action:** `mc_player_projection.ipynb` is a fully runnable, interactive demonstration of this engine — 9 ipywidgets sliders control availability, fixture difficulty, and iteration count. Click **Run Interact** to re-run the 300,000-cell tensor simulation with new parameters.
+
+[![Launch on Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/vkenard/football-performance-analytics/main?labpath=mc_player_projection.ipynb)
+*One click — no account, no setup. Opens a live Jupyter session with all dependencies installed (~1–2 min cold start). Static pre-rendered output is embedded in the notebook for GitHub viewing.*
 
 ---
 
