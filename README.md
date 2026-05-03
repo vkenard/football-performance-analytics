@@ -89,6 +89,8 @@ DC parameters are refitted on a rolling monthly basis to track squad-level chang
 Demonstrates time-aware model evaluation using a strict chronological 70/30 split.
 Covers: 3-way accuracy, binary accuracy, Brier score, Brier Skill Score, rolling drift chart, **feature importance**.
 
+The included `sample_dataset.csv` (348 matches, 2023–2026) shows **61.8% 3-way accuracy** — versus a naive home-win-always baseline of ~45%. Draw prediction accuracy is the hardest class (32%), consistent with the industry-wide difficulty of draw forecasting in football.
+
 ### 2. `calibration_analysis.ipynb`
 
 Assesses probability reliability using a quantile-binned reliability curve.
@@ -238,6 +240,7 @@ football-performance-analytics/
 | `prob_H` / `prob_D` / `prob_A` | Full 3-way probability output (sums to 1.0) |
 | `elo_diff` | Elo rating gap (home minus away) |
 | `home_xg` / `away_xg` | Expected goals (Understat) |
+| `xg_diff` | `home_xg − away_xg` — net expected goal advantage for the home side |
 | `dc_home_attack` / `dc_away_defence` | Dixon-Coles per-team strength parameters |
 | `form_home_5` / `form_away_5` | Points from last 5 matches |
 | `rest_days_home` / `rest_days_away` | Days since last fixture |
