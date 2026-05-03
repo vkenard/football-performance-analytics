@@ -12,6 +12,20 @@ The domain is football, but the engineering patterns transfer directly: producti
 
 ---
 
+## Tech Stack
+
+| Layer | Tools |
+| --- | --- |
+| **Language** | Python 3.11 |
+| **ML / Statistics** | scikit-learn, LightGBM, Dixon-Coles (custom implementation), Monte Carlo simulation |
+| **Data engineering** | Pandas, NumPy, multi-source ingestion (REST APIs, CSV, JSON), automated weekly pipeline |
+| **Probability calibration** | Platt scaling, Brier Score, reliability curves, quantile binning |
+| **Visualisation** | Matplotlib (custom dark-theme charting system), radar charts, heatmaps, distribution plots |
+| **Validation** | Chronological 5-fold CV, forward-chaining time splits, rolling drift monitoring |
+| **Tooling** | Jupyter, Git, automated data quality gates |
+
+---
+
 ## Model Architecture
 
 The system implements a **four-model equal-weight blend** combining Dixon-Coles structural parameters with LightGBM gradient-boosted contextual models. Blend weights are selected via grid search over chronological cross-validation.
@@ -295,13 +309,13 @@ Garner uniquely combines defensive dominance with above-average creative and mat
 
 ---
 
-## Academy & Development Application
+## Methodology Transfer: Development Tracking & Drift Detection
 
 ![Academy Development Monitor](https://raw.githubusercontent.com/vkenard/football-performance-analytics/main/assets/gw26_academy_development_monitor.png?v=20260221)
 
-*Development monitor built from FPL 2025/26 gameweek files (Mateus Mané, Wolverhampton Wanderers, FW/AM, born September 2007). Tracks FPL creativity per 90 and rolling Z-score versus GW cohort baseline. Mané reached breakout threshold by GW24 — assisted the Wolves first goal in WOL v ARS 2-2 (GW26).*
+*Rolling Z-score drift monitor applied to an emerging player's per-90 creativity metric versus a GW cohort baseline (Mateus Mané, Wolves, born 2007). Breakout threshold crossed by GW24 — statistically confirmed before the standout match contribution in GW26.*
 
-The methodology is directly transferable beyond football:
+The pattern is domain-agnostic and applies directly to any KPI time series:
 
 - **Development tracking** — rolling drift monitor applied to any KPI time series detects improvement or regression before aggregate metrics catch up
 - **Isolating process from luck** — Brier Score measures probability quality, not win rate; a player or team can be improving without the results to show for it
