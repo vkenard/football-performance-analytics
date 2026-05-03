@@ -12,6 +12,22 @@ The domain is football, but the engineering patterns transfer directly: producti
 
 ---
 
+## Contents
+
+- [Tech Stack](#tech-stack)
+- [Model Architecture](#model-architecture)
+- [Key Achievements](#key-achievements)
+- [Notebooks](#notebooks)
+- [Generated Visualisations](#generated-visualisations)
+- [Fixture Intelligence](#fixture-intelligence)
+- [Live Simulation Tools](#live-simulation-tools)
+- [Running the Notebooks](#running-the-notebooks)
+- [Data Dictionary](#data-dictionary-sample_datasetcsv)
+- [Case Studies](#case-study-forensic-recruitment--performance)
+- [Limitations & Future Work](#limitations--future-work)
+
+---
+
 ## Tech Stack
 
 | Layer | Tools |
