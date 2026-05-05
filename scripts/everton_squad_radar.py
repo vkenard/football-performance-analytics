@@ -27,11 +27,27 @@ from scipy.stats import percentileofscore
 warnings.filterwarnings('ignore')
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
-BASE        = r'c:\Users\bigke\OneDrive\Desktop\VS Code Model'
-GW_GLOB     = os.path.join(BASE, 'FPL_RAW_DATA', 'main_2025', 'GW*_player_gameweek_stats.csv')
-PLAYERS_CSV = os.path.join(BASE, 'FPL_PLAYERS_2025_2026.csv')
-ASSETS_DIR  = os.path.join(BASE, 'football-performance-analytics', 'assets')
+SCRIPT_DIR  = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT   = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
+# Override data root via environment variable, e.g.:
+#   set DATA_ROOT=C:\path\to\your\data   (Windows)
+#   export DATA_ROOT=/path/to/your/data   (Unix)
+DATA_ROOT   = os.environ.get('DATA_ROOT', os.path.abspath(os.path.join(REPO_ROOT, '..')))
+GW_GLOB     = os.path.join(DATA_ROOT, 'FPL_RAW_DATA', 'main_2025', 'GW*_player_gameweek_stats.csv')
+PLAYERS_CSV = os.path.join(DATA_ROOT, 'FPL_PLAYERS_2025_2026.csv')
+ASSETS_DIR  = os.path.join(REPO_ROOT, 'assets')
 os.makedirs(ASSETS_DIR, exist_ok=True)
+
+if not glob.glob(GW_GLOB):
+    raise FileNotFoundError(
+        f"Could not find GW files using pattern: {GW_GLOB}. "
+        "Set the DATA_ROOT environment variable to the folder containing FPL_RAW_DATA/."
+    )
+if not os.path.isfile(PLAYERS_CSV):
+    raise FileNotFoundError(
+        f"Could not find players registry: {PLAYERS_CSV}. "
+        "Set the DATA_ROOT environment variable to the folder containing FPL_PLAYERS_2025_2026.csv."
+    )
 
 EVERTON_TEAM_CODE = 11
 MIN_MINUTES       = 600   # minimum season minutes to qualify

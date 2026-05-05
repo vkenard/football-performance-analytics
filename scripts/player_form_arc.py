@@ -28,7 +28,20 @@ DARK     = '#222222'
 plt.rcParams.update({'font.family': 'sans-serif',
                      'figure.facecolor': 'white'})
 
-GW_DIR = r'c:\Users\bigke\OneDrive\Desktop\VS Code Model\FPL_RAW_DATA\main_2025'
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, '..'))
+WORKSPACE_ROOT = os.path.abspath(os.path.join(REPO_ROOT, '..'))
+# Override data root via environment variable, e.g.:
+#   set DATA_ROOT=C:\path\to\your\data   (Windows)
+#   export DATA_ROOT=/path/to/your/data   (Unix)
+DATA_ROOT = os.environ.get('DATA_ROOT', WORKSPACE_ROOT)
+GW_DIR = os.path.join(DATA_ROOT, 'FPL_RAW_DATA', 'main_2025')
+
+if not os.path.isdir(GW_DIR):
+    raise FileNotFoundError(
+        f"Could not find GW data directory: {GW_DIR}. "
+        "Set the DATA_ROOT environment variable to the folder containing FPL_RAW_DATA/."
+    )
 
 # ── Load all GWs ──────────────────────────────────────────────────────────────
 files   = sorted(glob.glob(f'{GW_DIR}/GW*_player_gameweek_stats.csv'))
